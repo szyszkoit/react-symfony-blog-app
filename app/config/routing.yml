@@ -1,0 +1,17 @@
+loginPath:
+    path:  /login
+    defaults: { _controller: AppBundle:login:login }
+    requirements:
+        _method:  POST
+
+loginCheck:
+    path:  /login-check
+    defaults: { _controller: AppBundle:login:loginCheck }
+    requirements:
+        _method:  POST
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+
