@@ -44,7 +44,8 @@ class Header extends Component {
     super();
     this.state = {
       authenticated: false
-    }
+        //sessionStorage.getItem('api_token')? true : false
+    };
     this.onLogin = this.onLogin.bind(this);
   };
 

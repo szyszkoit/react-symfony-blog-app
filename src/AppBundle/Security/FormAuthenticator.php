@@ -86,13 +86,14 @@ class FormAuthenticator extends AbstractGuardAuthenticator
     }
 
     private function generateToken($token){
-        return md5($token);
+
+        return password_hash($token, PASSWORD_DEFAULT);
     }
 
     private function saveToken($token){
         $session = new Session();
-        $session->set('api_token', $token);
-        return ;
+        $session->set('api_token', $this->generateToken($token));
+        return new Response($session->get('api_token'));
     }
 
     /**
@@ -100,11 +101,7 @@ class FormAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $token = $this->generateToken($token);
-        $session = new Session();
-        $session->set('api_token', $token);
-        $response = new Response($session->get('api_token'));
-        return $response;
+        return $this->saveToken($token);
     }
 
     /**
