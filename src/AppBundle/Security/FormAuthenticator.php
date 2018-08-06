@@ -15,6 +15,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class FormAuthenticator extends AbstractGuardAuthenticator
 {
@@ -34,6 +35,9 @@ class FormAuthenticator extends AbstractGuardAuthenticator
     /**
      * Creates a new instance of FormAuthenticator
      */
+
+    private $apiToken;
+
     public function __construct(RouterInterface $router) {
         $this->router = $router;
     }
@@ -81,13 +85,26 @@ class FormAuthenticator extends AbstractGuardAuthenticator
         throw new CustomUserMessageAuthenticationException($this->failMessage);
     }
 
+    private function generateToken($token){
+        return md5($token);
+    }
+
+    private function saveToken($token){
+        $session = new Session();
+        $session->set('api_token', $token);
+        return ;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $url = $this->router->generate('homepage');
-        return new RedirectResponse($url);
+        $token = $this->generateToken($token);
+        $session = new Session();
+        $session->set('api_token', $token);
+        $response = new Response($session->get('api_token'));
+        return $response;
     }
 
     /**

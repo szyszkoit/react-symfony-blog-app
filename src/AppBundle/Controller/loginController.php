@@ -22,7 +22,7 @@ class loginController extends Controller
     {
         $user = $this->getUser();
         if ($user instanceof UserInterface) {
-            return new Response(json_encode($user, true), 404);
+            return new Response(json_encode($user, true), 200);
         }
 
         /** @var AuthenticationException $exception */

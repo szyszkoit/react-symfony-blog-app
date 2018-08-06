@@ -312,12 +312,12 @@ class BlogUser implements UserInterface
     }
     public function getRoles()
     {
-        $roles = $this->userType;
+        $roles[] = $this->userType;
         // guarantees that a user always has at least one role for security
 
         if (empty($roles)) {
 
-            $roles = 'ROLE_USER';
+            $roles[] = 'ROLE_USER';
 
         }
 
