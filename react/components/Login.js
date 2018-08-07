@@ -44,21 +44,19 @@ class Login extends Component {
         $.ajax({
             type: 'POST',
             url: loginPath,
-            dataType:'jsonp',
             data: {
                 _username: data.get('username'),
                 _password: data.get('password')
             },
             success: function(data){
                 console.log(data);
-                //sessionStorage.setItem('api_token', data.responseText);
+                sessionStorage.setItem('api_token', data);
+                self.userLogged(true);
             },
             error: function(error){
                // console.log(error);
               if(error.responseJSON) {
                 console.log(error.responseJSON);
-              }else{
-                self.userLogged(true);
               }
             }
         });

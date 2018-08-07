@@ -5,7 +5,7 @@ import Contact from "./Contact/Contact";
 import PostDetails from "./Home/PostDetails";
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link} from "react-router-dom";
 import {
   Grid,
   Button,
@@ -43,39 +43,23 @@ class Header extends Component {
   constructor(){
     super();
     this.state = {
-      authenticated: false
-        //sessionStorage.getItem('api_token')? true : false
+      authenticated: sessionStorage.getItem('api_token')? true : false
+
     };
     this.onLogin = this.onLogin.bind(this);
+    this.onLogout = this.onLogout.bind(this);
   };
 
   onLogin (loginStatus){
     this.setState({authenticated: loginStatus})
+    window.location.href="/";
   }
-
-  ComponentWillReceiveProps() {
-  let self = this;
-  $.ajax({
-           type: 'POST',
-           url: loginCheck,
-           dataType:'json',
-           success: function(){
-  //JSON.parse(data);
-  self.onLogin(true);
-  //console.log(data.errors);sss
-},
-error: function(error){
-  if(error.responseJSON) {
-    console.log(error.responseJSON);
-  }else{
-    console.log(error)
-    //self.userLogged(true);
-  }
-}
-});
+  onLogout (){
+    sessionStorage.removeItem('api_token');
+    this.setState({authenticated: false});
+    window.location.href="/";
   }
   render(){
-
 
     const MyPostPage = (props) => {
       return (
@@ -115,7 +99,7 @@ error: function(error){
               </Nav>
               <Nav pullRight>
                 <NavItem eventKey={1} href="#">
-                  {this.state.authenticated ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
+                  {this.state.authenticated ? <Link to="/logout" onClick={this.onLogout}>Logout</Link> : <Link to="/login">Login</Link>}
                   {/*<Link to="/login">Login</Link>*/}
                 </NavItem>
               </Nav>

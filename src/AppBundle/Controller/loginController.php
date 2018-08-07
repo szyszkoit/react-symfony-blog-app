@@ -10,6 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class loginController extends Controller
@@ -111,7 +112,8 @@ class loginController extends Controller
      * @Route("/logout", name="logout")
      */
     public function logoutAction() {
-
+        $this->get('session')->invalidate();
+        return $this->render('default/index.html.twig');
     }
 
 }
