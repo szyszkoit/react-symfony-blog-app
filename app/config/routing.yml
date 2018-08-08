@@ -4,9 +4,9 @@ loginPath:
     requirements:
         _method:  POST
 
-loginCheck:
-    path:  /login-check
-    defaults: { _controller: AppBundle:login:loginCheck }
+getPosts:
+    path:  /getposts
+    defaults: { _controller: AppBundle:posts:getposts }
     requirements:
         _method:  POST
 
