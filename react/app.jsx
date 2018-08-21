@@ -23,39 +23,40 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.postsLoad = this.postsLoad.bind(this);
+    this.state = {
+        posts: []
+    }
     }
 
-  postsLoad() {
-    //event.preventDefault();
-    const self = this;
-    //const data = new FormData(event.target);
-    $.ajax({
-      type: 'POST',
-      url: getPosts,
-      // data: {
-      //   _username: data.get('username'),
-      //   _password: data.get('password')
-      // },
-      success: function (data) {
-        console.log(data);
-      },
-      error: function (error) {
-        // console.log(error);
-        if (error.responseJSON) {
-          console.log(error.responseJSON);
-        }
-      }
-    });
-  }
+
   componentDidMount(){
     {
-    this.postsLoad();
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: getPosts,
+            // data: {
+            //   _username: data.get('username'),
+            //   _password: data.get('password')
+            // },
+            success: function (data) {
+                //console.log(JSON.parse(data));
+                self.setState({
+                    posts: JSON.parse(data)
+                })
+            },
+            error: function (error) {
+                // console.log(error);
+                if (error.responseJSON) {
+                    console.log(error.responseJSON);
+                }
+            }
+        });
     }
   }
         render() {
           return (
-            <Header/>
+            <Header posts={this.state.posts} />
           )
         }
 }

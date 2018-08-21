@@ -10,6 +10,26 @@ getPosts:
     requirements:
         _method:  POST
 
+postDetails:
+    path:  /post/{slug}
+    defaults: { _controller: AppBundle:posts:postDetails }
+    requirements:
+        slug: .*/$
+        _method:  GET
+
+postDetailsData:
+    path:  /getdata/post/{slug}
+    defaults: { _controller: AppBundle:posts:postDetailsData }
+    requirements:
+        slug: .*/$
+        _method:  GET
+
+addComment:
+    path:  /addcomment
+    defaults: { _controller: AppBundle:comments:addComment }
+    requirements:
+        _method:  POST
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

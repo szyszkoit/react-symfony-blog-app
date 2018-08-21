@@ -5,7 +5,6 @@ import Car from './Car';
 
 class Home extends Component {
     render(){
-        console.log(this.props);
         // Get data from route props
         const posts = this.props.posts;
         //Map through cars and return linked cars
@@ -13,14 +12,14 @@ class Home extends Component {
             return (
                 <div className="post-div">
                     <Link
-                        to={"/post/"+post.id}
+                        to={"/post/"+post.slug}
                         className="list-group-item"
-                        key={post.id}>
+                        key={post.slug}>
                         <div className="post-div-img">
-                            <img src={post.media} alt={post.name} />
+                            <img src={post.image} alt={post.title} />
                         </div>
                         <div class="post-div-title">
-                            {post.name}
+                            {post.title}
                         </div>
                     </Link>
                 </div>

@@ -66,8 +66,8 @@ class Login extends Component {
     render() {
         return (
               <Row>
-                <Col xs={3}></Col>
-                <Col xs={6}>
+                <Col sm={3}></Col>
+                <Col sm={6}>
               <Panel>
                 <Panel.Heading>Zaloguj się</Panel.Heading>
                 <Panel.Body>
@@ -93,13 +93,11 @@ class Login extends Component {
                       <Button type="submit">Zaloguj</Button>
                     </Col>
                   </Form>
-                    <Col className="text-center login-error" xs={12}>
-                        <p>error</p>
-                    </Col>
+
                 </Panel.Body>
               </Panel>
                   </Col>
-                <Col xs={3}></Col>
+                <Col sm={3}></Col>
               </Row>
         );
     }

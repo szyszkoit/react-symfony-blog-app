@@ -1,9 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * BlogUser
  *
@@ -18,62 +16,53 @@ class BlogUser implements UserInterface
      * @ORM\Column(name="user_login", type="string", length=255, nullable=false)
      */
     private $userLogin;
-
     /**
      * @var string
      * @ORM\Column(name="user_name", type="string", length=127, nullable=false)
      */
     private $userName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="user_email", type="string", length=127, nullable=false)
      */
     private $userEmail;
-
     /**
      * @var string
      *
      * @ORM\Column(name="user_password", type="string", length=127, nullable=false)
      */
     private $userPassword;
-
     /**
      * @var string
      *
      * @ORM\Column(name="api_token", type="string", length=127, nullable=false)
      */
     private $apiToken;
-
     /**
      * @var string
      *
      * @ORM\Column(name="user_type", type="text", nullable=false)
      */
     private $userType;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="user_active", type="integer", nullable=false)
      */
     private $userActive;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="user_date_add", type="datetime", nullable=false)
      */
     private $userDateAdd;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="user_date_lastlogin", type="datetime", nullable=false)
      */
     private $userDateLastlogin;
-
     /**
      * @var integer
      *
@@ -82,9 +71,6 @@ class BlogUser implements UserInterface
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
-
-
-
     /**
      * Set userLogin
      *
@@ -95,10 +81,8 @@ class BlogUser implements UserInterface
     public function setUserLogin($userLogin)
     {
         $this->userLogin = $userLogin;
-
         return $this;
     }
-
     /**
      * Get userLogin
      *
@@ -108,7 +92,6 @@ class BlogUser implements UserInterface
     {
         return $this->userLogin;
     }
-
     /**
      * Set userName
      *
@@ -119,10 +102,8 @@ class BlogUser implements UserInterface
     public function setUserName($userName)
     {
         $this->userName = $userName;
-
         return $this;
     }
-
     /**
      * Get userName
      *
@@ -132,7 +113,6 @@ class BlogUser implements UserInterface
     {
         return $this->userName;
     }
-
     /**
      * Set userEmail
      *
@@ -143,10 +123,8 @@ class BlogUser implements UserInterface
     public function setUserEmail($userEmail)
     {
         $this->userEmail = $userEmail;
-
         return $this;
     }
-
     /**
      * Get userEmail
      *
@@ -156,7 +134,6 @@ class BlogUser implements UserInterface
     {
         return $this->userEmail;
     }
-
     /**
      * Set userPassword
      *
@@ -167,10 +144,8 @@ class BlogUser implements UserInterface
     public function setUserPassword($userPassword)
     {
         $this->userPassword = $userPassword;
-
         return $this;
     }
-
     /**
      * Get userPassword
      *
@@ -180,7 +155,6 @@ class BlogUser implements UserInterface
     {
         return $this->userPassword;
     }
-
     /**
      * Set apiToken
      *
@@ -191,10 +165,8 @@ class BlogUser implements UserInterface
     public function setApiToken($apiToken)
     {
         $this->apiToken = $apiToken;
-
         return $this;
     }
-
     /**
      * Get apiToken
      *
@@ -204,7 +176,6 @@ class BlogUser implements UserInterface
     {
         return $this->apiToken;
     }
-
     /**
      * Set userType
      *
@@ -215,10 +186,8 @@ class BlogUser implements UserInterface
     public function setUserType($userType)
     {
         $this->userType = $userType;
-
         return $this;
     }
-
     /**
      * Get userType
      *
@@ -228,7 +197,6 @@ class BlogUser implements UserInterface
     {
         return $this->userType;
     }
-
     /**
      * Set userActive
      *
@@ -239,10 +207,8 @@ class BlogUser implements UserInterface
     public function setUserActive($userActive)
     {
         $this->userActive = $userActive;
-
         return $this;
     }
-
     /**
      * Get userActive
      *
@@ -252,7 +218,6 @@ class BlogUser implements UserInterface
     {
         return $this->userActive;
     }
-
     /**
      * Set userDateAdd
      *
@@ -263,10 +228,8 @@ class BlogUser implements UserInterface
     public function setUserDateAdd($userDateAdd)
     {
         $this->userDateAdd = $userDateAdd;
-
         return $this;
     }
-
     /**
      * Get userDateAdd
      *
@@ -276,7 +239,6 @@ class BlogUser implements UserInterface
     {
         return $this->userDateAdd;
     }
-
     /**
      * Set userDateLastlogin
      *
@@ -287,10 +249,8 @@ class BlogUser implements UserInterface
     public function setUserDateLastlogin($userDateLastlogin)
     {
         $this->userDateLastlogin = $userDateLastlogin;
-
         return $this;
     }
-
     /**
      * Get userDateLastlogin
      *
@@ -300,7 +260,6 @@ class BlogUser implements UserInterface
     {
         return $this->userDateLastlogin;
     }
-
     /**
      * Get userId
      *
@@ -314,16 +273,11 @@ class BlogUser implements UserInterface
     {
         $roles[] = $this->userType;
         // guarantees that a user always has at least one role for security
-
         if (empty($roles)) {
-
             $roles[] = 'ROLE_USER';
-
         }
-
         return $roles;
     }
-
     public function getPassword()
     {
         return $this->userPassword;

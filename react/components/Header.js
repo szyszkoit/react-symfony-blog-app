@@ -17,28 +17,6 @@ import {
   MenuItem,
   NavDropdown
 } from 'react-bootstrap';
-const posts = [
-  {
-    id: 1,
-    name: 'Honda Accord Crosstour',
-    year: '2010',
-    model: 'Accord Crosstour',
-    make: 'Honda',
-    media: 'http://media.ed.edmunds-media.com/honda/accord-crosstour/2010/oem/2010_honda_accord-crosstour_4dr-hatchback_ex-l_fq_oem_4_500.jpg',
-    price: '$16,811'
-
-  },
-  {
-    id: 2,
-    name: 'Honda Accord Crosstour 2',
-    year: '2010',
-    model: 'Accord Crosstour',
-    make: 'Honda',
-    media: 'http://media.ed.edmunds-media.com/honda/accord-crosstour/2010/oem/2010_honda_accord-crosstour_4dr-hatchback_ex-l_fq_oem_4_500.jpg',
-    price: '$16,811'
-
-  }
-];
 class Header extends Component {
   constructor(){
     super();
@@ -51,7 +29,7 @@ class Header extends Component {
   };
 
   onLogin (loginStatus){
-    this.setState({authenticated: loginStatus})
+    this.setState({authenticated: loginStatus});
     window.location.href="/";
   }
   onLogout (){
@@ -64,7 +42,7 @@ class Header extends Component {
     const MyPostPage = (props) => {
       return (
         <PostDetails
-          posts={posts}
+          posts={this.props.posts}
           {...props}
         />
       );
@@ -107,9 +85,9 @@ class Header extends Component {
           </Navbar>
         </Row>
         <Route exact path="/" render={() => (
-          <Home posts={posts}/>
+          <Home posts={this.props.posts}/>
         )}/>
-        <Route path="/post/:id" component={MyPostPage}/>
+        <Route path="/post/:slug" component={MyPostPage}/>
         <Route path="/about" component={About}/>
         <Route path="/login" component={MyLoginPage}/>
         <Route path="/contact" component={Contact}/>
