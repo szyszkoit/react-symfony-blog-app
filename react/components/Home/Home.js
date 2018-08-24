@@ -12,7 +12,7 @@ class Home extends Component {
             return (
                 <div className="post-div">
                     <Link
-                        to={"/post/"+post.slug}
+                        to={"/"+post.slug}
                         className="list-group-item"
                         key={post.slug}>
                         <div className="post-div-img">

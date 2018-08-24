@@ -64,6 +64,7 @@ class Login extends Component {
     };
 
     render() {
+      console.log(this.props);
         return (
               <Row>
                 <Col sm={3}></Col>

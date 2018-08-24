@@ -45,26 +45,26 @@ class postsController extends Controller
     }
 
 
-    /**
-     * @Route("getdata/post/{slug}", name="postDetailsData", requirements={"slug" = "[0-9a-zA-Z\/\-]*"})
-     */
-    public function postDetailsDataAction($slug)
-    {
-        $ems = $this->getDoctrine()->getManager()->createQueryBuilder()
-            ->from('AppBundle:BlogPosts', 'd')
-            ->select("d")
-            ->where("d.slug = '".$slug."'" )
-            ->getQuery();
-        $data = $ems->getArrayResult();
-        $result = $data;
-        return new Response(json_encode($result, true), 200);
-    }
-
-    /**
-     * @Route("post/{slug}", name="postDetails", requirements={"slug" = "[0-9a-zA-Z\/\-]*"})
-     */
-    public function postDetailsAction($slug)
-    {
-        return $this->render('default/index.html.twig');
-    }
+//    /**
+//     * @Route("getdata/post/{slug}", name="postDetailsData", requirements={"slug" = "[0-9a-zA-Z\/\-]*"})
+//     */
+//    public function postDetailsDataAction($slug)
+//    {
+//        $ems = $this->getDoctrine()->getManager()->createQueryBuilder()
+//            ->from('AppBundle:BlogPosts', 'd')
+//            ->select("d")
+//            ->where("d.slug = '".$slug."'" )
+//            ->getQuery();
+//        $data = $ems->getArrayResult();
+//        $result = $data;
+//        return new Response(json_encode($result, true), 200);
+//    }
+//
+//    /**
+//     * @Route("post/{slug}", name="postDetails", requirements={"slug" = "[0-9a-zA-Z\/\-]*"})
+//     */
+//    public function postDetailsAction($slug)
+//    {
+//        return $this->render('default/index.html.twig');
+//    }
 }

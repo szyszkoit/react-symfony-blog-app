@@ -5,7 +5,7 @@ import Contact from "./Contact/Contact";
 import PostDetails from "./Home/PostDetails";
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Redirect, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect, Route, Link} from "react-router-dom";
 import {
   Grid,
   Button,
@@ -50,7 +50,7 @@ class Header extends Component {
     const MyLoginPage = (props) => {
       return (
         <Login
-          onLogin={this.onLogin}
+          posts={this.props.posts}
           {...props}
         />
       );
@@ -84,14 +84,16 @@ class Header extends Component {
             </Navbar.Collapse>
           </Navbar>
         </Row>
-        <Route exact path="/" render={() => (
-          <Home posts={this.props.posts}/>
-        )}/>
-        <Route path="/post/:slug" component={MyPostPage}/>
-        <Route path="/about" component={About}/>
-        <Route path="/login" component={MyLoginPage}/>
-        <Route path="/contact" component={Contact}/>
-        {/*<PrivateRoute path="/protected" component={Protected} />*/}
+        <Switch>
+          <Route exact path="/" render={() => (
+            <Home posts={this.props.posts}/>
+          )}/>
+          <Route path="/:slug" component={MyPostPage}/>
+          <Route path="/about" component={About}/>
+          <Route path="/login" component={MyLoginPage}/>
+          <Route path="/contact" component={Contact}/>
+          {/*<PrivateRoute path="/protected" component={Protected} />*/}
+        </Switch>
       </Grid>
     </Router>
     )
